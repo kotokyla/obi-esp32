@@ -1,4 +1,4 @@
-/**
+/*
  * Open Battery Information - ESP32-C3 Firmware
  *
  * FUNCTIONAL REQUIREMENTS:
@@ -25,10 +25,13 @@
  * AI-generated on 2025-12-16
  */
 
+//Unsloppifying in progress
+
 #include <Arduino.h>
 #include "OneWire2.h"
 
 #ifdef ENABLE_WEB_SERVER
+#include <ESPmDNS.h>
 #include <WiFi.h>
 #include <WebServer.h>
 #include <ArduinoJson.h>
@@ -92,7 +95,6 @@ bool readBatteryModel();
 
 #ifdef ENABLE_WEB_SERVER
 void setupWebServer();
-void setupOTA();
 #endif
 
 // ------------------------------------------------------------------
@@ -123,17 +125,15 @@ void setup() {
 #ifdef ENABLE_WEB_SERVER
     Serial.println("Mode: Web Server + Serial Bridge");
 
-    WiFi.softAP("esp32");
+    WiFi.softAP("obi-esp32", "obi-esp32");
+    MDNS.begin("obi-esp32");
 
     Serial.println();
     Serial.println(WiFi.softAPIP());
-    setupOTA();
     setupWebServer();
-
 #else
     Serial.println("Mode: Serial Bridge Only");
 #endif
-
     Serial.println("Ready.");
 }
 
@@ -489,41 +489,6 @@ void processSerialCommand() {
         setEnable(false);
     }
 }
-
-// ------------------------------------------------------------------
-// OTA Updates
-// ------------------------------------------------------------------
-
-#ifdef ENABLE_WEB_SERVER
-void setupOTA() {
-    ArduinoOTA.setHostname("obi-esp32");
-
-    ArduinoOTA.onStart([]() {
-        String type = (ArduinoOTA.getCommand() == U_FLASH) ? "sketch" : "filesystem";
-        Serial.println("OTA Start: " + type);
-    });
-
-    ArduinoOTA.onEnd([]() {
-        Serial.println("\nOTA End");
-    });
-
-    ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
-        Serial.printf("OTA Progress: %u%%\r", (progress / (total / 100)));
-    });
-
-    ArduinoOTA.onError([](ota_error_t error) {
-        Serial.printf("OTA Error[%u]: ", error);
-        if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
-        else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
-        else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
-        else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
-        else if (error == OTA_END_ERROR) Serial.println("End Failed");
-    });
-
-    ArduinoOTA.begin();
-    Serial.println("OTA Ready");
-}
-#endif
 
 // ------------------------------------------------------------------
 // Web Server (Phase 2)

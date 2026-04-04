@@ -95,7 +95,7 @@ Looking at the battery terminals from the front:
 - [PlatformIO](https://platformio.org/) (VS Code extension or CLI)
 - USB-C cable
 
-### Initial Flash (USB)
+### Flashing
 
 ```bash
 # Build and upload via USB
@@ -105,31 +105,12 @@ pio run -e esp32c3_web -t upload
 pio device monitor
 ```
 
-### OTA Updates
-
-After the initial flash, you can update wirelessly:
-
-```bash
-# Upload via OTA (update IP in platformio.ini if needed)
-pio run -e esp32c3_ota -t upload
-```
-
-**Note**: If OTA fails with "Connect Failed", you may need to allow incoming connections from the ESP32's IP address in your firewall:
-
-```bash
-# Linux with firewalld
-sudo firewall-cmd --add-rich-rule='rule family="ipv4" source address="192.168.x.x" accept'
-sudo firewall-cmd --runtime-to-permanent
-```
-
 ## Usage
 
 ### Finding the Device
 
-The ESP32 advertises itself via mDNS. After connecting to WiFi, access:
-
-- **mDNS**: `http://obi-esp32.local`
-- **Direct IP**: Check serial output for assigned IP address
+Connect to ESP`s wifi access point, password is the same as the name.
+After connecting, open web UI using http://obi-esp32.local or http://192.168.4.1
 
 ### Web Interface
 
