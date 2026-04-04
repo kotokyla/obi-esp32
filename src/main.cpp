@@ -34,9 +34,6 @@
 #include <ArduinoJson.h>
 #include <ArduinoOTA.h>
 #include "web_interface.h"
-#if __has_include("secrets.h")
-#include "secrets.h"
-#endif
 #endif
 
 // Version
@@ -51,15 +48,6 @@
 
 #ifndef ENABLE_PIN
 #define ENABLE_PIN 4
-#endif
-
-// WiFi credentials (for web server mode)
-#ifndef WIFI_SSID
-#define WIFI_SSID "YourSSID"
-#endif
-
-#ifndef WIFI_PASS
-#define WIFI_PASS "YourPassword"
 #endif
 
 // Nibble swap helper
@@ -134,27 +122,14 @@ void setup() {
 
 #ifdef ENABLE_WEB_SERVER
     Serial.println("Mode: Web Server + Serial Bridge");
-    Serial.println("Connecting to WiFi...");
 
-    WiFi.begin(WIFI_SSID, WIFI_PASS);
+    WiFi.softAP("esp32");
 
-    int attempts = 0;
-    while (WiFi.status() != WL_CONNECTED && attempts < 30) {
-        delay(500);
-        Serial.print(".");
-        attempts++;
-    }
+    Serial.println();
+    Serial.println(WiFi.softAPIP());
+    setupOTA();
+    setupWebServer();
 
-    if (WiFi.status() == WL_CONNECTED) {
-        Serial.println();
-        Serial.print("Connected! IP: ");
-        Serial.println(WiFi.localIP());
-        setupOTA();
-        setupWebServer();
-    } else {
-        Serial.println();
-        Serial.println("WiFi failed - Serial bridge only");
-    }
 #else
     Serial.println("Mode: Serial Bridge Only");
 #endif

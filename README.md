@@ -95,23 +95,6 @@ Looking at the battery terminals from the front:
 - [PlatformIO](https://platformio.org/) (VS Code extension or CLI)
 - USB-C cable
 
-### Configuration
-
-Copy the secrets template and add your WiFi credentials:
-
-```bash
-cp src/secrets.h.example src/secrets.h
-```
-
-Then edit `src/secrets.h` with your WiFi credentials:
-
-```cpp
-#define WIFI_SSID "YourSSID"
-#define WIFI_PASS "YourPassword"
-```
-
-The `secrets.h` file is gitignored, so your credentials won't be committed to version control.
-
 ### Initial Flash (USB)
 
 ```bash
