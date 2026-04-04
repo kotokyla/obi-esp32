@@ -10,7 +10,7 @@ This firmware provides a web-based interface for reading Makita LXT battery info
 
 - **Web Interface**: Responsive single-page application accessible from any browser
 - **Real-time Battery Data**: Cell voltages, pack voltage, temperatures, charge count
-- **mDNS Discovery**: Access via `http://obi-esp32.local`
+- **mDNS Discovery**: Access via `http://obi.local`
 - **REST API**: JSON endpoints for integration with other systems
 - **Dual Temperature Sensors**: Cell thermistor and MOSFET temperatures
 
@@ -108,8 +108,8 @@ pio device monitor
 
 ### Finding the Device
 
-Connect to ESP`s wifi access point, password is the same as the name.
-After connecting, open web UI using http://obi-esp32.local or http://192.168.4.1
+Connect to ESP`s wifi access point, password is "12345678".
+After connecting, open web UI using http://obi.local or http://192.168.4.1
 
 ### Web Interface
 

@@ -126,8 +126,8 @@ void setup() {
 #ifdef ENABLE_WEB_SERVER
     Serial.println("Mode: Web Server + Serial Bridge");
 
-    WiFi.softAP("obi-esp32", "obi-esp32");
-    MDNS.begin("obi-esp32");
+    WiFi.softAP("Makita LXT", "12345678");
+    MDNS.begin("obi");
 
     Serial.println();
     Serial.println(WiFi.softAPIP());
