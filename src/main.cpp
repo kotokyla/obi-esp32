@@ -119,6 +119,7 @@ void setup() {
     Serial.println("OBI ESP32-C3 - Open Battery Info");
     Serial.println("=================================");
     Serial.printf("Version: %d.%d.%d\n", OBI_VERSION_MAJOR, OBI_VERSION_MINOR, OBI_VERSION_PATCH);
+    Serial.printf("https://github.com/kotokyla/obi-esp32");
     Serial.printf("OneWire Pin: GPIO%d\n", ONEWIRE_PIN);
     Serial.printf("Enable Pin: GPIO%d\n", ENABLE_PIN);
 

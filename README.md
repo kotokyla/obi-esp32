@@ -205,7 +205,7 @@ Readings are typically 5-10°C above ambient due to:
 
 ## Acknowledgements
 
-This project is a port of the excellent [Open Battery Information](https://github.com/mnh-jansson/open-battery-information) by Martin Jansson. The original project provides a Python GUI application and documents the Makita battery communication protocol.
+Fork of [obi-esp32](https://github.com/appositeit/obi-esp32) based on [Open Battery Information](https://github.com/mnh-jansson/open-battery-information) by Martin Jansson.
 
 Additional resources:
 - [OBI Build Video](https://www.youtube.com/watch?v=kUg9jWvf5FM) - Excellent tutorial showing the original Arduino build
@@ -213,6 +213,6 @@ Additional resources:
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file.
+GNU GPLv3 license - [LICENSE](LICENSE)
 
-Same license as the original Open Battery Information project.
+Open Battery Information is using [MIT license](https://github.com/mnh-jansson/open-battery-information/blob/main/LICENSE.md)
