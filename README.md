@@ -11,7 +11,6 @@ This firmware provides a web-based interface for reading Makita LXT battery info
 - **Web Interface**: Responsive single-page application accessible from any browser
 - **Real-time Battery Data**: Cell voltages, pack voltage, temperatures, charge count
 - **mDNS Discovery**: Access via `http://obi-esp32.local`
-- **OTA Updates**: Wireless firmware updates after initial flash
 - **REST API**: JSON endpoints for integration with other systems
 - **Dual Temperature Sensors**: Cell thermistor and MOSFET temperatures
 
