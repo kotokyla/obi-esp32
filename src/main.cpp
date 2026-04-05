@@ -35,7 +35,6 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <ArduinoJson.h>
-#include <ArduinoOTA.h>
 #include "web_interface.h"
 #endif
 
@@ -143,7 +142,6 @@ void setup() {
 // ------------------------------------------------------------------
 void loop() {
 #ifdef ENABLE_WEB_SERVER
-    ArduinoOTA.handle();
     server.handleClient();
 #endif
     processSerialCommand();
